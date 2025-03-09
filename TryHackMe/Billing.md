@@ -1,6 +1,7 @@
 # **Easy - Some mistakes can be costly.**
 
 # Reconnaissance
+Target: 10.10.228.140
 
 ## open services
 ```
@@ -23,6 +24,9 @@ Originally had -p- to scan all ports, although was taking too long
 - `-sV` → Detects versions of services running on open ports.
 
 ## Enumeration of Webserver 
+
+http://10.10.228.140 redirects to http://10.10.228.140/mbilling in a browser so we should enumrate both the root and subdirectory 
+
 ```
 gobuster dir -u http://10.10.228.140/mbilling -w /usr/share/wordlists/dirb/common.txt -t 50
 
@@ -118,18 +122,18 @@ should have had .md within files, it would have found the readme.md with the ver
 * Manaully searching all folders and files for anything that stood out
 
 # Findings
-Opening 10.10.228.140 directs us to http://10.10.228.140/mbilling/, we also see a loading screen for MagnusBilling and googling mbilling confirms MagnusBilling.
-
-Googling suggest there should be a md file, which might contain version 
-
+* 10.10.228.140 directs us to http://10.10.228.140/mbilling/
+* We see a loading screen for MagnusBilling and googling mbilling confirms MagnusBilling
+* Googling suggest there should be a md file, which might contain version 
 http://10.10.228.140/mbilling/README.md
+```
 ###############
 MagnusBilling 7 
 ###############
+```
+* Checking for exploits, we find  https://www.cve.org/CVERecord?id=CVE-2023-30258 for versions 6.* and 7* 
 
-checking for exploits, we find  https://www.cve.org/CVERecord?id=CVE-2023-30258 for versions 6.* and 7*
-
-Is an excellent rating exploit on Metasploit for CVE-2023-30258
+* There is an excellent rating exploit on Metasploit for CVE-2023-30258
 ```
 msf6 > search CVE-2023-30258
 
@@ -277,7 +281,9 @@ Status
 ChatGPT also suggests we can set commands with sshd when using actions within /etc/fail2ban/action.d/ but can't with custom rules. Chat often lies but lets give it a chance
 
 Giving Chat the list of files within action.d, it tells us
-If you want to **trigger a reverse shell** when an IP is banned, the best choices are: ✅ **`iptables-multiport.conf`** (for banning specific ports)  
+If you want to **trigger a reverse shell** when an IP is banned, the best choices are:
+
+✅ **`iptables-multiport.conf`** (for banning specific ports)  
 ✅ **`iptables-allports.conf`** (for full IP bans)  
 ✅ **`route.conf`** (if you want to drop network routes)
 
