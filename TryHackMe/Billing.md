@@ -252,7 +252,7 @@ THM{---------------------------}
 
 ```
 
-## # Privilege Escalation flag
+## Privilege Escalation flag
 Running sudo -l to check sudo privileges, we find we can run fail2ban-client as sudo with no password
 
 ```
