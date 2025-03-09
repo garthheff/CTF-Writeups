@@ -134,10 +134,10 @@ Nice room to show why custom frameworks for preventing SQLi is a bad idea, took 
 
 ## Setting up pwntools for kali 
 ```
-mkdir /home/kali/pwntools
+mkdir -p /home/kali/pwntools
 python3 -m venv /home/kali/pwntools
-home/kali/pwntools/bin/pip install pwntools pwntools\nsource /home/kali/pwntools/bin/activate
-
+source /home/kali/pwntools/bin/activate
+pip install pwntools
 ```
 ## bruteforce script
 ``nano lightbrute.py``
