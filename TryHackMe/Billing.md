@@ -1,4 +1,5 @@
 # **Easy - Some mistakes can be costly.**
+https://tryhackme.com/room/billing
 
 # Reconnaissance
 Target: 10.10.228.140
