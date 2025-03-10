@@ -327,5 +327,4 @@ THM{------------------------------------------}
 ```
 
 # Summary
-Was a fun room, "easy" although I spent much more than the 60 minutes. Spent a little to long trying to bypass the IP block, find email addresses within source code for the forgot password and SQLi. Exploitdb didn't give me hits for MagnusBilling, took a bit too long to going back to searching other resources. Was happy to see sudo -l give up the privliaged escalation and that ChatGPT could do it's thing with fail2ban.  Likely didn't need to reverse shell, back who doesn't like a good reverse shell?
-
+Was a fun room, "easy" although I spent much more than the 60 minutes. I focused a little to long trying to bypass the IP block, find email addresses within source code for the forgot password and SQLi. Exploitdb didn't give me hits for MagnusBilling, took a bit too long to going back to searching other resources. Was happy to see sudo -l give up the privliaged escalation and that ChatGPT could do it's thing with fail2ban.  Likely didn't need to reverse shell, back who doesn't like a good reverse shell?
