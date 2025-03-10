@@ -1,6 +1,8 @@
 # **Easy - Some mistakes can be costly.**
 https://tryhackme.com/room/billing
 
+Gain a shell, find the way and escalate your privileges!
+
 # Reconnaissance
 Target: 10.10.228.140
 
@@ -219,7 +221,7 @@ msf6 exploit(linux/http/magnusbilling_unauth_rce_cve_2023_30258) > sessions
 Note if you get the below, you might have burp suite open, close burp and run exploit again
 `[-] Exploit failed [bad-config]: Rex::BindFailed The address is already in use or unavailable: (0.0.0.0:8080).`
 
-## User flag
+## What is user.txt?
 Now we can search for the user.txt, it's normally within a user dir,
 ```
 meterpreter > cd magnus
@@ -253,7 +255,7 @@ THM{---------------------------}
 
 ```
 
-## Privilege Escalation flag
+## Privilege Escalation flag, What is root.txt?
 Running sudo -l to check sudo privileges, we find we can run fail2ban-client as sudo with no password
 
 ```
