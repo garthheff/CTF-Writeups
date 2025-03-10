@@ -1,4 +1,4 @@
-# **Medium - Use your server exploitation skills to take control of a web app.
+# **Medium - Use your server exploitation skills to take control of a web app.**
 https://tryhackme.com/room/billing
 
 This challenge is an initial test to evaluate your capabilities in web pentesting, particularly for server-side attacks. Start the VM by clicking the `Start Machine` button at the top right of the task.
@@ -36,16 +36,17 @@ Nmap done: 1 IP address (1 host up) scanned in 40.21 seconds
 
 # Findings 
 
+## Initial findings 
 - Mail server? 
 - SSH
 - http://10.10.41.124:4000/
 - http://10.10.41.124:50000/
 
+## First flag findings 
 - logging in with guest and guest, opening guest profile page looks like we get the values like isAdmin: false and a area to update settings like favorite book, can we use this call to update the admin? http://10.10.41.124:4000/friend/1
 - Banner page has a upload image
-
-- SecretKey from API ? `"secretKey": "superSecretKey123",`
-* Possible LFI with path traversal? http://10.10.41.124:50000/profile.php?img=profile.png  
+## Second flag findings 
+- Possible LFI with path traversal? http://10.10.41.124:50000/profile.php?img=profile.png 
 # Exploiting
 
 Testing finding with isAdmin on guest profile page, 
