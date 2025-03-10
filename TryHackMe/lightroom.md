@@ -131,7 +131,7 @@ Password: ##########
 # Summary 
 Nice room to show why custom built frameworks for preventing SQLi is a bad idea and to use [prepared statements](https://www.sqlite.org/c3ref/stmt.html). Also a good room for showcasing locating SQL version and extracting tables and column data. It took me a bit to long to start with SQLi and was focused on bruteforcing, although I do enjoy a pwntools script so was a bit of a side challenge. Including bruteforcing script below as while it didn't work it's a good showcase for pwntools so included in the walkthrough even though it was a failed path.  
 
-# failed exploration 
+# Failed exploration 
 
 ## Setting up pwntools for kali 
 ```
