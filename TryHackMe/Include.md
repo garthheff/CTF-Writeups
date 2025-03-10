@@ -263,7 +263,7 @@ THM{#####################}
 
 ```
 
-# Bound round, what about that SMTP server? 
+# Bonus round, what about that SMTP server? 
 
 We can LFI the mail server logs? yes we can
 
