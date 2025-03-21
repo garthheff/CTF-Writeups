@@ -24,7 +24,7 @@ Nmap done: 1 IP address (1 host up) scanned in 379.84 seconds
 ```
 
 
-* http://10.10.215.104 loads http://lookup.thm but not pager loads, adding to host file and we get a login page
+* http://10.10.215.104 loads http://lookup.thm but no page loads, adding to host file and we get a login page
 
 ```
 sudo nano /etc/hosts 
