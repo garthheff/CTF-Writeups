@@ -88,7 +88,7 @@ fetch("http://127.0.0.1:8080/flag.txt")
 </script>
 ```
 
-Yes! flag is returned
+Yes! flag is returned, What is the content of flag.txt?
 
 ```
 ─$ python flaskserverpost.py
