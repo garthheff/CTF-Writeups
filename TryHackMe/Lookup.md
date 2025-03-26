@@ -1,13 +1,12 @@
-- [[#Test your enumeration skills on this boot-to-root machine.|Test your enumeration skills on this boot-to-root machine.]]
-- [[#Initial Reconnaissance|Initial Reconnaissance]]
-- [[#What is the user flag?|What is the user flag?]]
-- [[#What is the root flag?|What is the root flag?]]
-- [[#Summary|Summary]]
-- [[#Full logging / output|Full logging / output]]
-	- [[#Full logging / output#Creating the files txt files into a single file, just encase we needed to use it|Creating the files txt files into a single file, just encase we needed to use it]]
-	- [[#Full logging / output#full linpeas|full linpeas]]
-	- [[#Full logging / output#Full STRACE|Full STRACE]]
-
+- [Test your enumeration skills on this boot-to-root machine.](#test-your-enumeration-skills-on-this-boot-to-root-machine)
+- [Initial Reconnaissance](#initial-reconnaissance)
+- [What is the user flag?](#what-is-the-user-flag)
+- [What is the root flag?](#what-is-the-root-flag)
+- [Summary](#summary)
+- [Full logging / output](#full-logging--output)
+	- [Creating the elFinder txt files into a single file, just encase we needed to use it](#creating-the-elfinder-txt-files-into-a-single-file-just-encase-we-needed-to-use-it)
+	- [full linpeas](#full-linpeas)
+	- [Full STRACE](#full-strace)
 
 ##  Test your enumeration skills on this boot-to-root machine.
 
