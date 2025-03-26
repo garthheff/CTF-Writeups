@@ -1,3 +1,4 @@
+# Lookup
 - [Test your enumeration skills on this boot-to-root machine.](#test-your-enumeration-skills-on-this-boot-to-root-machine)
 - [Initial Reconnaissance](#initial-reconnaissance)
 - [What is the user flag?](#what-is-the-user-flag)
