@@ -290,7 +290,7 @@ Registering a user gives us error:
 Invalid or Expired API key
 ```
 
-If the required key within github page? 
+Is the required key within github page? 
 
 ```
 if (isset($headers['X-THM-API-Key']) && $headers['X-THM-API-Key'] === 'TBA') {
@@ -440,4 +440,6 @@ Was a little bit annoying that google gave github away with walkthrough answer o
 | Hash                             | Type | Result   |
 | -------------------------------- | ---- | -------- |
 | e8d25b4208b80008a9e15c8698640e85 | md5  | johncena |
+|                                  |      |          |
+
 Enjoyed this one, had used cloning a github and searching at recent CTF event and was nice to make use of again as in real world there can be a lot more data to go through and manual search could become to time consuming. Did expected more OSINT and needing to grep through lots of data which did send me down some dead ends.
