@@ -280,6 +280,7 @@ echo "10.10.81.184 grep.thm" | sudo tee -a /etc/hosts
 ```
 
 We now get
+
 ![unnamed](https://github.com/garthheff/CTF-Writeups/blob/main/TryHackMe/files/images/SearchME.png?raw=true)
 
 ## What is the API key that allows a user to register on the website?
