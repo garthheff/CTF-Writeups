@@ -9,8 +9,6 @@ Start by deploying the machine; Click on the `Start Machine` button in the up
 
 Your goal is to identify and exploit vulnerabilities in the application using a combination of recon and OSINT skills. As you progress, you’ll look for weak points in the app, find sensitive data, and attempt to gain unauthorized access. You will leverage the skills and knowledge acquired through the Red Team Pathway to devise and execute your attack strategies.
 
-**Note:** Please allow the machine 3 - 5 minutes to fully boot. Also, no local privilege escalation is necessary to answer the questions.
-
 - [Initial Reconnaissance](#initial-reconnaissance)
 	- [nmap](#nmap)
 	- [website emulation](#website-emulation)
