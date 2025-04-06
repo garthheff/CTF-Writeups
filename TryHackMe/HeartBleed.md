@@ -29,7 +29,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.62 seconds
 
 ```
 
-## using metasploit 
+## Using metasploit 
 
 Commands used
 ```
