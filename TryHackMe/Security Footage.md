@@ -61,7 +61,7 @@ foremost can carve JPEGs (`.jpg`) based on magic headers.
 foremost -i tcpdump_output/192.168.001.100.08081-010.000.002.015.42312 -o mjpeg_carve
 ```
 
-From here you can view images, 
+From here you can view images and extract flag
 ```
 ls mjpeg_carve/jpg/
 ```
