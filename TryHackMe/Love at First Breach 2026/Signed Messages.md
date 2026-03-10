@@ -266,7 +266,7 @@ The script outputs the **signature in hex format**.
 
 # 6. Forging a Signed Message
 
-Login to the site and navigate to the message verification feature.
+Login to the site as admin and navigate to the message verification feature.
 
 Steps:
 
