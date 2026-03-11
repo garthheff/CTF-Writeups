@@ -1,8 +1,7 @@
 
 # TryHackMe
 
-Room
-[https://tryhackme.com/room/lafb2026e10](https://tryhackme.com/room/lafb2026e10)
+Room: https://tryhackme.com/room/lafb2026e10
 
 ## Challenge
 
