@@ -1,5 +1,7 @@
 # Cupid's Matchmaker
 
+Room: https://tryhackme.com/room/lafb2026e3
+
 ## Scenario
 
 **Cupid's Matchmaker** claims that real humans manually review each personality survey to match users with compatible singles.
