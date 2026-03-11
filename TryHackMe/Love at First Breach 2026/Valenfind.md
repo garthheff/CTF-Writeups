@@ -10,6 +10,7 @@ Stuck and need a nudge in the right direction?
 ➡️ Try the hints page before reading the full solution:  
 [https://github.com/garthheff/CTF-Hints/blob/main/Love%20at%20First%20Breach%202026%20%20/Corp%20Website.md](https://github.com/garthheff/CTF-Hints/blob/main/Love%20at%20First%20Breach%202026%20%20/Valenfind.md)
 
+---
 
 ## Challenge
 
