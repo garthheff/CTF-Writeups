@@ -1,4 +1,4 @@
-# TryHackMe – Deep Into my Heart
+# Deep Into my Heart
 
 Room: https://tryhackme.com/room/lafb2026e9
 
