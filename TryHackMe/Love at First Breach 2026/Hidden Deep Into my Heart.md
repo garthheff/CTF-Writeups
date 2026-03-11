@@ -1,7 +1,6 @@
 # TryHackMe – Deep Into my Heart
 
-Room
-[https://tryhackme.com/room/lafb2026e9](https://tryhackme.com/room/lafb2026e9)
+Room: https://tryhackme.com/room/lafb2026e9
 
 ## Scenario
 
