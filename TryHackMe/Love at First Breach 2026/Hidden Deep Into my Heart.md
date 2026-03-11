@@ -2,6 +2,14 @@
 
 Room: https://tryhackme.com/room/lafb2026e9
 
+## ⚠️ STOP
+
+Stuck and need a nudge in the right direction?
+
+➡️ Try the hints page before reading the full solution:  
+https://github.com/garthheff/CTF-Hints/blob/main/Love%20at%20First%20Breach%202026%20%20/Hidden%20Deep%20Into%20my%20Heart.md
+
+
 ## Scenario
 
 Cupid's Vault was designed to protect secrets meant to stay hidden forever. Intelligence suggests Cupid may have unintentionally left vulnerabilities in the system.
