@@ -2,6 +2,13 @@
 
 Room: [https://tryhackme.com/room/lafb2026e7](https://tryhackme.com/room/lafb2026e7)
 
+## ⚠️ STOP
+
+Stuck and need a nudge in the right direction?
+
+➡️ Try the hints page before reading the full solution:  
+https://github.com/garthheff/CTF-Hints/blob/main/Love%20at%20First%20Breach%202026%20%20/Corp%20Website.md
+
 ---
 
 # Scenario
