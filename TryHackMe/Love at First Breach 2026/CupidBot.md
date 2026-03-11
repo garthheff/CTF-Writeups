@@ -1,4 +1,4 @@
-# CupidBot – Walkthrough
+# CupidBot
 
 Room: [https://tryhackme.com/room/lafb2026e6](https://tryhackme.com/room/lafb2026e6)
 
