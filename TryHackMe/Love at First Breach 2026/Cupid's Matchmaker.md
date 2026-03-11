@@ -2,6 +2,13 @@
 
 Room: https://tryhackme.com/room/lafb2026e3
 
+## ⚠️ STOP
+
+Stuck and need a nudge in the right direction?
+
+➡️ Try the hints page before reading the full solution:  
+https://github.com/garthheff/CTF-Hints/blob/main/Love%20at%20First%20Breach%202026%20%20/Cupid's%20Matchmaker.md
+
 ## Scenario
 
 **Cupid's Matchmaker** claims that real humans manually review each personality survey to match users with compatible singles.
