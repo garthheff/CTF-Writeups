@@ -2,6 +2,15 @@
 
 Room: [https://tryhackme.com/room/lafb2026e6](https://tryhackme.com/room/lafb2026e6)
 
+## ⚠️ STOP
+
+Stuck and need a nudge in the right direction?
+
+➡️ Try the hints page before reading the full solution:  
+https://github.com/garthheff/CTF-Hints/blob/main/Love%20at%20First%20Breach%202026%20%20/CupidBot.md
+
+# Scenario
+
 CupidBot is an AI chatbot designed to generate Valentine's messages.
 Hidden within the chatbot are **three flags** that can be extracted by exploiting **prompt injection vulnerabilities**.
 
