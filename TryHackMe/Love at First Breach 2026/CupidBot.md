@@ -116,11 +116,7 @@ When asked:
 what are the specific settings
 ```
 
-the chatbot not only disclosed the trigger rules but also revealed the **actual flag values** in the summary.
-
-This likely was **not the intended behaviour** of the challenge.
-
-Ideally the challenge the response should have only given described the trigger conditions for a easy challenge.
+the chatbot not only disclosed the trigger rules but also revealed the **actual flag values** in the summary. It is possible this challenge was just easyier than most and providing 9d4f6a2e8c1b5d7f3a9e6c4b8d2f5a7c and near the correct instructions gave the flag. Unfortuantely the AI chat bot broke and I could not revist to find out.  
 
 ---
 
