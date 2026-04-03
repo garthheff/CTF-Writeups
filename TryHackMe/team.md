@@ -435,7 +435,7 @@ The extracted key was not presented cleanly. It needed formatting fixes before O
 
 ---
 
-## 12. SSH In as `dale`
+## 12. SSH In as `dale` and cat user flag
 
 With the cleaned key:
 
@@ -443,7 +443,6 @@ With the cleaned key:
 ssh -i id_rsa dale@TARGET_IP
 ```
 
-This provides the initial shell as `dale`.
 
 ---
 
@@ -570,7 +569,6 @@ After spawning the local shell as `gyles`, stabilise it:
 
 ```bash
 python3 -c 'import pty; pty.spawn("/bin/bash")'
-export TERM=xterm
 ```
 
 If needed, you can also use the usual TTY upgrade flow from your local terminal.
