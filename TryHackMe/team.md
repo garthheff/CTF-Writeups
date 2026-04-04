@@ -1,5 +1,16 @@
 
-# TryHackMe – Team Walkthrough (Full Detailed Version)
+# TryHackMe – Team Walkthrough
+
+Beginner friendly boot2root machine
+
+Room: https://tryhackme.com/room/teamcw
+
+## ⚠️ STOP
+
+Stuck and need a nudge in the right direction?
+
+➡️ Try the hints page before reading the full solution:  https://github.com/garthheff/CTF-Hints/edit/main/Team.md
+
 
 ## Overview
 
