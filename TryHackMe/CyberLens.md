@@ -11,6 +11,14 @@ At CyberLens, we believe that every pixel holds a story, and it is our mission t
 
 Can you exploit the CyberLens web server and discover the hidden flags? 
 
+Room: https://tryhackme.com/room/cyberlensp6
+
+## ⚠️ STOP
+
+Stuck and need a nudge in the right direction?
+
+➡️ Try the hints page before reading the full solution:  
+[https://github.com/garthheff/CTF-Hints/](https://github.com/garthheff/CTF-Hints/blob/main/CyberLens.md)
 
 ## Initial setup
 
