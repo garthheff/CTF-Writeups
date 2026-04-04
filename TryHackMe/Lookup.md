@@ -1,4 +1,9 @@
 # Lookup
+
+Lookup offers a treasure trove of learning opportunities for aspiring hackers. This intriguing machine showcases various real-world vulnerabilities, ranging from web application weaknesses to privilege escalation techniques. By exploring and exploiting these vulnerabilities, hackers can sharpen their skills and gain invaluable experience in ethical hacking. Through "Lookup," hackers can master the art of reconnaissance, scanning, and enumeration to uncover hidden services and subdomains. They will learn how to exploit web application vulnerabilities, such as , and understand the significance of secure coding practices. The machine also challenges hackers to automate tasks, demonstrating the power of scripting in penetration testing.﻿
+
+Note: It is recommended to use your own if you'll ever experience problems visualizing the site.
+
 - [Test your enumeration skills on this boot-to-root machine.](#test-your-enumeration-skills-on-this-boot-to-root-machine)
 - [Initial Reconnaissance](#initial-reconnaissance)
 - [What is the user flag?](#what-is-the-user-flag)
@@ -8,6 +13,15 @@
 	- [Creating the elFinder txt files into a single file, just encase we needed to use it](#creating-the-elfinder-txt-files-into-a-single-file-just-encase-we-needed-to-use-it)
 	- [full linpeas](#full-linpeas)
 	- [Full STRACE](#full-strace)
+
+Room: https://tryhackme.com/room/lookup
+
+## ⚠️ STOP
+
+Stuck and need a nudge in the right direction?
+
+➡️ Try the hints page before reading the full solution:  https://github.com/garthheff/CTF-Hints/blob/main/Lookup.md
+
 
 ##  Test your enumeration skills on this boot-to-root machine.
 
