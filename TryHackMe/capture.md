@@ -4,6 +4,14 @@
 
 SecureSolaCoders has once again developed a web application. They were tired of hackers enumerating and exploiting their previous login form. They thought a Web Application (WAF) was too overkill and unnecessary, so they developed their own rate limiter and modified the code slightly.
 
+## ⚠️ STOP
+
+Stuck and need a nudge in the right direction?
+
+➡️ Try the hints page before reading the full solution:  
+[https://github.com/garthheff/CTF-Hints](https://github.com/garthheff/CTF-Hints/blob/main/Capture.md)
+
+
 ------------------------------------------------------------------------
 
 ## behaviour
