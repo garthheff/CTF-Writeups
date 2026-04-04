@@ -1,5 +1,4 @@
 # Grep - A challenge that tests your reconnaissance and OSINT skills.
-https://tryhackme.com/room/greprtp
 
 Welcome to the OSINT challenge, part of TryHackMe’s Red Teaming Path. In this task, you will be an ethical hacker aiming to exploit a newly developed web application.
 
@@ -8,6 +7,16 @@ SuperSecure Corp, a fast-paced startup, is currently creating a blogging platfor
 Start by deploying the machine; Click on the `Start Machine` button in the upper-right-hand corner of this task to deploy the virtual machine for this room.
 
 Your goal is to identify and exploit vulnerabilities in the application using a combination of recon and OSINT skills. As you progress, you’ll look for weak points in the app, find sensitive data, and attempt to gain unauthorized access. You will leverage the skills and knowledge acquired through the Red Team Pathway to devise and execute your attack strategies.
+
+Room: https://tryhackme.com/room/greprtp
+
+## ⚠️ STOP
+
+Stuck and need a nudge in the right direction?
+
+➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/Grep.md
+
+--------------------------
 
 - [Initial Reconnaissance](#initial-reconnaissance)
 	- [nmap](#nmap)
