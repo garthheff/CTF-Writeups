@@ -1,5 +1,13 @@
 # Can you exploit the sticker shop in order to capture the flag?
-https://tryhackme.com/room/thestickershop
+
+Room: https://tryhackme.com/room/thestickershop
+
+## ⚠️ STOP
+
+Stuck and need a nudge in the right direction?
+
+➡️ Try the hints page before reading the full solution:  [https://github.com/garthheff/CTF-Hints](https://github.com/garthheff/CTF-Hints/blob/main/The%20Sticker%20Shop.md)
+
 
 # Reconnaissance
 Not much to see, there is a feedback page
