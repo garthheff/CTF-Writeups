@@ -4,6 +4,12 @@ Room: https://tryhackme.com/room/bsidesgtanonforce
 
 boot2root machine for FIT and bsides guatemala CTF
 
+⚠️ STOP
+
+Stuck and need a nudge in the right direction?
+
+➡️ Try the hints page before reading the full solution: h[ttps://github.com/garthheff/CTF-Hints/](https://github.com/garthheff/CTF-Hints/blob/main/Anonforce.md
+
 ---
 
 ## Overview
