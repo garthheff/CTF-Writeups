@@ -2,6 +2,15 @@
 
 boot2root machine for FIT and bsides guatemala CTF
 
+⚠️ STOP
+
+Stuck and need a nudge in the right direction?
+
+➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/Thompson.md
+
+Room: https://tryhackme.com/room/bsidesgtthompson
+
+
 ## Initial Recon
 
 We begin with a full port scan to understand the attack surface. At this stage we are not making assumptions — just collecting as much information as possible.
