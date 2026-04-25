@@ -1,6 +1,10 @@
 
 # Behind Door Number $RANDOM
 
+Not everything is as random as it seems. Every wrong choice brings you closer to the truth… if you’re smart enough to see it.
+
+Room: https://tryhackme.com/jr/behinddoornumberrandom
+
 ## Overview
 
 This room is based around weak randomness in Bash. The intro gives several hints:
