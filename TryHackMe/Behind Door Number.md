@@ -1,6 +1,11 @@
 
 # Behind Door Number $RANDOM
 
+```
+“So Hacksaw was right about you all along?
+That’s… actually kind of embarrassing.”
+```
+
 Not everything is as random as it seems. Every wrong choice brings you closer to the truth… if you’re smart enough to see it.
 
 Room: https://tryhackme.com/jr/behinddoornumberrandom
