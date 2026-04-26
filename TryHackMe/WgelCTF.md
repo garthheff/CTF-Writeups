@@ -8,7 +8,7 @@ Have fun with this easy box.
 
 Stuck and need a nudge in the right direction?
 
-➡️ Try the hints page before reading the full solution: h[ttps://github.com/garthheff/CTF-Hints/](https://github.com/garthheff/CTF-Hints/blob/main/wgelctf.md)
+➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/wgelctf.md
 
 ---
 
