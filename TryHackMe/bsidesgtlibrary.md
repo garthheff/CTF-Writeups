@@ -131,9 +131,13 @@ The interesting part here is:
 User-agent: rockyou
 ```
 
-This strongly hints that the `rockyou.txt` wordlist should be used somewhere. Since SSH is open, the next likely step is password spraying or brute forcing a discovered or guessed username.
+This strongly hints that the `rockyou.txt` wordlist should be used somewhere. 
 
-In this room, the username is:
+In this room, checking the website on a browser we see posts, and this is like likely username 
+
+```text
+Posted on June 29th 2009 by meliodas - 3 comments
+```
 
 ```text
 meliodas
@@ -200,13 +204,13 @@ cat user.txt
 
 ```text
 meliodas@ubuntu:~$ cat user.txt
-6d488cbb3f111d135722c33cb635f4ec
+6d488xxxxxxxxxxxxxxxxxxx35f4ec
 ```
 
 User flag:
 
 ```text
-6d488cbb3f111d135722c33cb635f4ec
+6d48xxxxxxxxxxxxxxxxxxxcb635f4ec
 ```
 
 ---
