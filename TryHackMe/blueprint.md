@@ -1,4 +1,4 @@
-#Blueprint
+# Blueprint
 
 Hack into this Windows machine and escalate your privileges to Administrator.
 
