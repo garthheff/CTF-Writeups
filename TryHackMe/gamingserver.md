@@ -1,6 +1,10 @@
+# gamingserver
+
 Room: https://tryhackme.com/room/gamingserver
 
-boot2root machine for FIT and bsides guatemala CTF
+An Easy Boot2Root box for beginners
+
+Can you gain access to this gaming server built by amateurs with no experience of web development and take advantage of the deployment system.
 
 ⚠️ STOP
 
