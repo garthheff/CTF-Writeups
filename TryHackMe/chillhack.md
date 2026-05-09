@@ -684,25 +684,6 @@ proof.txt  snap
 {ROOT-FLAG: REDACTED}
 ```
 
-## Public walkthrough comparison
-
-I checked the path against multiple public Chill Hack walkthroughs. The public writeups confirm the main chain:
-
-1. Ports 21, 22, and 80 are open.
-2. Anonymous FTP exposes `note.txt`, which hints at command filtering and names Anurodh and Apaar.
-3. Web enumeration finds `/secret/`.
-4. `/secret/` contains command injection, with filtering that can be bypassed.
-5. `www-data` can run `/home/apaar/.helpline.sh` as `apaar` through sudo.
-6. The `.helpline.sh` script executes the message input, allowing a shell as `apaar`.
-7. `/var/www/files/index.php` contains MySQL credentials for the `webportal` database.
-8. The database contains hashes for web users.
-9. The `hacker-with-laptop_23-2147985341.jpg` image contains `backup.zip` extractable with `steghide`.
-10. `backup.zip` contains `source_code.php`, which reveals the base64 encoded password for `anurodh`.
-11. `anurodh` is in the Docker group.
-12. Docker can mount `/` into a container and chroot into the host filesystem for root.
-
-The only adjustment I made from our raw notes is presentation and ordering. We originally tested some dead ends, including cron, timers, SUID, and password reuse with the cracked web hashes. Those checks were useful enumeration but not the intended path, so they are mentioned briefly instead of becoming the main route.
-
 ## Lessons learned
 
 - FTP notes are often hints for the next service rather than standalone loot.
