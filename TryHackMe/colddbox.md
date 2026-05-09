@@ -4,6 +4,12 @@ An easy level machine with multiple ways to escalate privileges. By Hixec.
 
 Room: https://tryhackme.com/room/colddboxeasy
 
+⚠️ STOP
+
+Stuck and need a nudge in the right direction?
+
+➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/colddbox.md
+
 ## Summary
 
 ColddBox Easy is a WordPress focused boot2root room. The route taken here was:
