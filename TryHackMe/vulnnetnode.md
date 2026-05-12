@@ -8,7 +8,7 @@ After the previous breach, VulnNet Entertainment states it won't happen again. C
 
 Stuck and need a nudge in the right direction?
 
-➡️ Try the hints page before reading the full solution: [https://github.com/garthheff/CTF-Hints/](https://github.com/garthheff/CTF-Hints/blob/main/Anonforce.md)
+➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/vulnnetnode.md
 
 ---
 
