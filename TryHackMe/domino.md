@@ -1,4 +1,4 @@
-# BSidesGT: Domino
+# Domino
 
 Room: https://tryhackme.com/room/domino
 
