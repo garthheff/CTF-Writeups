@@ -12,7 +12,7 @@ Your point of entry is a web-facing file-sharing application. Behind it sits an 
 
 Stuck and need a nudge in the right direction?
 
-➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/dead-drop.md
+➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/jr-penetration-tester/dead-drop.md
 
 ## What password grants you SSH access to the web server?
 
