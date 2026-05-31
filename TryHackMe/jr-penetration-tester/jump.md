@@ -14,7 +14,7 @@ recon_user → dev_user → monitor_user → ops_user → root
 
 Stuck and need a nudge in the right direction?
 
-➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/jump.md
+➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/jr-penetration-tester/jump.md
 
 ---
 
