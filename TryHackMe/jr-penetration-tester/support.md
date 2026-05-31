@@ -10,7 +10,7 @@ A new internal Support Operations Platform has been deployed to assist IT and he
 
 Stuck and need a nudge in the right direction?
 
-➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/support.md
+➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/jr-penetration-tester/support.md
 
 ---
 
