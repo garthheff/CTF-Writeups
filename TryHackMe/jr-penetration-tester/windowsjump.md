@@ -1,6 +1,6 @@
 # Windows Jump
 
-Room: https://tryhackme.com/room/bsidesgtanonforce
+Room: https://tryhackme.com/room/windowsjump
 
 Use privilege escalation knowledge to jump from a guest user to SYSTEM.
 
