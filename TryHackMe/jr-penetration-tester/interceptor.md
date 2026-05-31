@@ -14,7 +14,7 @@ Room: https://tryhackme.com/room/interceptor
 
 Stuck and need a nudge in the right direction?
 
-➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/interceptor.md
+➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/jr-penetration-tester/interceptor.md
 
 ---
 
