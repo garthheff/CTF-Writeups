@@ -18,7 +18,7 @@ Your job is to get in, move through the system, and find out what is really runn
 
 Stuck and need a nudge in the right direction?
 
-➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/silent-monitor.md
+➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/jr-penetration-tester/silent-monitor.md
 
 ---
 
