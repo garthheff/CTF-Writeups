@@ -14,7 +14,7 @@ A single misstep can trigger a chain reaction, exploit each weakness in sequence
 
 Stuck and need a nudge in the right direction?
 
-➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/domino.md
+➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/jr-penetration-tester/domino.md
 
 ---
 
