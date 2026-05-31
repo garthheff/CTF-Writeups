@@ -12,7 +12,7 @@ Room: https://tryhackme.com/room/recruitwebchallenge
 
 Stuck and need a nudge in the right direction?
 
-➡️ Try the hints page before reading the full solution: [https://github.com/garthheff/CTF-Hints/](https://github.com/garthheff/CTF-Hints/blob/main/recruitwebchallenge.md)
+➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/jr-penetration-tester/recruitwebchallenge.md
 
 ---
 
