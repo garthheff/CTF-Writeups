@@ -14,7 +14,7 @@ Allow two to three minutes for all services to start.
 
 Stuck and need a nudge in the right direction?
 
-➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/operationcoldstart.md
+➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/jr-penetration-tester/operationcoldstart.md
 
 ---
 
