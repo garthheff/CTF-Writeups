@@ -1,5 +1,7 @@
 # VulnNet: Roasted
 
+Room: https://tryhackme.com/room/vulnnetroasted.md
+
 VulnNet Entertainment quickly deployed another management instance on their very broad network...
 
 VulnNet Entertainment just deployed a new instance on their network with the newly-hired system administrators. Being a security-aware company, they as always hired you to perform a penetration test, and see how system administrators are performing.
@@ -17,7 +19,8 @@ Icon made by DinosoftLabs (opens in new tab) from www.flaticon.com
 
 Stuck and need a nudge in the right direction?
 
-➡️ Try the hints page before reading the full solution: https://tryhackme.com/room/vulnnetroasted.md
+➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/vulnnetroasted.md
+
 
 ## Summary
 
