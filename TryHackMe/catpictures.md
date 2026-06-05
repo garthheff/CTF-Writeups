@@ -4,8 +4,6 @@ I made a forum where you can post cute cat pictures!
 
 Room: https://tryhackme.com/room/catpictures
 
-boot2root machine for FIT and bsides guatemala CTF
-
 ⚠️ STOP
 
 Stuck and need a nudge in the right direction?
