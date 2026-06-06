@@ -12,7 +12,7 @@ Our site is a reflection of our school values, designed by our engineers with in
 
 Stuck and need a nudge in the right direction?
 
-➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/Anonforce.md
+➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/yueiua.md
 
 ---
 
