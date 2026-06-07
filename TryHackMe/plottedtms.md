@@ -2,7 +2,7 @@
 
 Room: https://tryhackme.com/room/plottedtms
 
-boot2root machine for FIT and bsides guatemala CTF
+Everything here is plotted!
 
 ⚠️ STOP
 
