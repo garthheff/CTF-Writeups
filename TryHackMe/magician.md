@@ -2,6 +2,8 @@
 
 This magical website lets you convert image file formats
 
+Room: https://tryhackme.com/room/magician
+
 ⚠️ STOP
 
 Stuck and need a nudge in the right direction?
