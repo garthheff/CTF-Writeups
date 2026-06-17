@@ -2,6 +2,8 @@
 
 Intermediate level CTF. Just enumerate, you'll get there.
 
+Room: https://tryhackme.com/room/boilerctf2
+
 ⚠️ STOP
 
 Stuck and need a nudge in the right direction?
