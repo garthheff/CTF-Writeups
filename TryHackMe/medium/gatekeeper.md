@@ -4,6 +4,8 @@ Can you get past the gate and through the fire?
 
 Defeat the Gatekeeper to break the chains.  But beware, fire awaits on the other side.
 
+Room: https://tryhackme.com/room/gatekeeper
+
 ⚠️ STOP
 
 Stuck and need a nudge in the right direction?
