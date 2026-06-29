@@ -8,7 +8,7 @@ Room: https://tryhackme.com/room/aster
 
 Stuck and need a nudge in the right direction?
 
-➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/anonymous.md
+➡️ Try the hints page before reading the full solution: https://github.com/garthheff/CTF-Hints/blob/main/aster.md
 
 ## Overview
 
