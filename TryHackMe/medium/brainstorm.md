@@ -4,8 +4,6 @@ Reverse engineer a chat program and write a script to exploit a Windows machine.
 
 Room: https://tryhackme.com/room/brainstorm
 
-Not the hacking group
-
 ⚠️ STOP
 
 Stuck and need a nudge in the right direction?
