@@ -4,502 +4,257 @@ Room: https://tryhackme.com/room/manage/calculatedluck
 
 ## Introduction
 
-**Calculated Luck** is a business-logic challenge inspired by a real lottery flaw.
+**Calculated Luck** is a business-logic challenge inspired by a real lottery loophole.
 
-The challenge is not about predicting random numbers or manipulating a lottery draw. Instead, the goal is to recognise when the lottery’s payout rules temporarily make buying tickets profitable.
+The objective is to recognise when the lottery becomes profitable, buy tickets at the correct time, and grow the starting balance to **$1,000,000** before the flaw is fixed.
 
-Players must analyse the jackpot, identify an upcoming **rolldown**, invest at the correct time, and grow their balance to **$1,000,000** before the flaw is fixed.
-
----
-
-## Learning Objectives
-
-By completing this challenge, players will learn how to:
-
-* Identify a business-logic vulnerability.
-* Calculate the expected value of an action.
-* Distinguish randomness from predictable system behaviour.
-* Recognise how scale can reduce the effect of short-term variance.
-* Exploit a valid system feature in an unintended way.
+The challenge is not about predicting the winning numbers. It is about predicting when the lottery’s payout rules create a positive expected return.
 
 ---
 
 ## Starting the Challenge
 
-The VM used by this challenge is shared with other rooms in the **Unhandled CTF Hub**.
+The VM is shared between several challenges in the **Unhandled CTF Hub**.
 
-Start the VM from the shared hosting room, then access:
+Start the VM, then open:
 
 ```text
 http://MACHINE_IP/rooms/a312e8b7/lottery/
 ```
 
-The VM starts with no individual challenge running. The first challenge URL accessed tells the server which room to load, and only that challenge will be started.
+The first challenge URL accessed tells the server which room to start. Make sure the Calculated Luck URL is opened first after starting the VM.
 
-Make sure the **Calculated Luck** URL is the first challenge URL opened after starting the VM.
-
-If another challenge was opened first, restart the VM and then access the Calculated Luck URL.
+If another challenge was loaded, restart the VM and open the lottery URL again.
 
 ---
 
-# The Real-World Exploit
+## The Real-World Loophole
 
-## Winfall and Cash WinFall
+Calculated Luck is inspired by Jerry and Marge Selbee, who discovered a flaw in the rules of the **Winfall** and **Cash WinFall** lotteries.
 
-Calculated Luck is inspired by Jerry and Marge Selbee, who discovered that a lottery’s payout rules could temporarily produce a positive expected return.
+When the jackpot reached its limit without a winner, the lottery triggered a **rolldown**. Instead of continuing to increase the jackpot, the money was added to the lower prize tiers.
 
-The original Michigan game, **Winfall**, used $1 tickets where players selected six numbers from 1 to 49. The important weakness was not in the random-number generation—it was in what happened when the jackpot reached its limit without a jackpot winner.
+The winning numbers remained random, but prizes for matching three, four, or five numbers became much larger.
 
-During a normal week, the jackpot continued growing and the lower prize tiers remained relatively small. During a **rolldown**, however, jackpot money was redistributed among players who matched fewer numbers.
+Jerry calculated that during a rolldown, the average return from a ticket could become greater than its purchase price.
 
-This increased the value of the lower prize tiers. For example:
+His approximate calculation for $1,100 worth of tickets was:
 
-| Match         | Normal prize | Approximate rolldown prize |
-| ------------- | -----------: | -------------------------: |
-| Four numbers  |         $100 |                     $1,000 |
-| Three numbers |           $5 |                        $50 |
+```text
+One four-number prize:       $1,000
+Three-number prizes:          $900
+Estimated return:           $1,900
+Estimated profit:             $800
+```
 
-The winning numbers were still random, but the payout structure had changed. During the right drawing, the average value of a ticket could become greater than its purchase price.
+A single ticket was still unlikely to win. However, purchasing thousands of tickets allowed the overall result to move closer to the mathematical average.
 
-Jerry later applied the same strategy to Massachusetts **Cash WinFall**, where rolldowns occurred when the jackpot reached approximately $2 million without being won. Large groups could purchase enough tickets during these periods to make a profit increasingly likely.
+The flaw was therefore not weak randomness. It was a mistake in the lottery’s payout rules.
 
 ---
 
-## Jerry Selbee’s Calculation
+## Expected Value
 
-Jerry estimated that buying approximately **$1,100 worth of tickets** during a rolldown would produce:
+Expected value measures the average return of an action over many attempts.
 
-* Approximately one four-number match worth $1,000.
-* Approximately eighteen or nineteen three-number matches worth about $900 in total.
-
-His estimated return was therefore:
+For each prize tier:
 
 ```text
-$1,000 + $900 = $1,900
+Probability of winning × Prize value
 ```
 
-After subtracting the original investment:
-
-```text
-$1,900 - $1,100 = $800 estimated profit
-```
-
-This did not mean that every $1,100 purchase was guaranteed to return exactly $1,900. It meant that, across enough tickets and repeated rolldowns, the average result was expected to be profitable.
-
-The Selbees began with smaller tests and eventually scaled their purchases dramatically. Across the lottery games they played, they grossed approximately $26 million. Their method was based on reading the rules, calculating the probabilities, and purchasing tickets only when the payout conditions were favourable.
-
----
-
-# Understanding Expected Value
-
-The mathematical concept behind the strategy is **expected value**, commonly shortened to **EV**.
-
-For each possible prize, multiply the probability of receiving that prize by its value:
-
-```text
-Prize contribution = Probability of winning × Prize value
-```
-
-Add the contribution from every prize tier:
-
-```text
-Expected payout =
-    (Probability of prize 1 × Prize 1)
-  + (Probability of prize 2 × Prize 2)
-  + (Probability of prize 3 × Prize 3)
-  + ...
-```
-
-Then subtract the ticket cost:
+Add the value of every prize tier, then subtract the ticket cost:
 
 ```text
 Net expected value = Expected payout - Ticket price
 ```
 
-The decision can be simplified to:
+The decision is simple:
 
 ```text
-Net EV below $0  = Do not buy
-Net EV above $0  = Buy
+Negative expected value → Do not buy
+Positive expected value → Buy
 ```
 
-Most lottery drawings have a negative expected value. Players will occasionally win, but the average return is less than the money spent.
+Normal lottery weeks have a negative expected value.
 
-A rolldown changes the payout values without changing the ticket price. If enough jackpot money is moved into the lower prize tiers, the expected payout can rise above the cost of the ticket.
-
-That is the vulnerability.
+During a rolldown, the increased lower-tier prizes can produce a positive expected value.
 
 ---
 
-## Why Buying More Tickets Helps
+## Challenge Objective
 
-A positive expected value does not guarantee that one ticket will win.
-
-Buying only a few tickets leaves the result heavily dependent on luck. A player might receive no useful prizes even during a profitable rolldown.
-
-Buying many tickets produces more opportunities for the simulated results to approach their mathematical average.
-
-For example, consider a hypothetical profitable ticket with an expected return of $1.20:
+The jackpot rolls down when it reaches approximately:
 
 ```text
-Cost per ticket:       $1.00
-Expected return:       $1.20
-Expected profit:       $0.20
+$2,000,000
 ```
 
-Buying ten tickets would produce an expected profit of:
+To complete the challenge:
 
-```text
-10 × $0.20 = $2.00
-```
-
-Buying 100,000 tickets would produce an expected profit of:
-
-```text
-100,000 × $0.20 = $20,000
-```
-
-The actual result will vary, but larger purchases reduce the effect that a small number of unusually good or bad outcomes has on the overall result.
-
-This is why the intended solution involves buying the maximum number of tickets during a correctly identified rolldown.
-
----
-
-# Challenge Objective
-
-The player begins with a limited balance and has fewer than 50 weeks before the lottery operators fix the flaw.
-
-The objective is to:
-
-1. Advance through the lottery weeks.
-2. Monitor the current jackpot.
-3. Identify when the jackpot will cross the $2 million rolldown threshold.
-4. Purchase a large number of tickets for that drawing.
+1. Monitor the jackpot.
+2. Skip normal weeks.
+3. Identify when the next drawing will cross $2 million.
+4. Buy the maximum number of tickets.
 5. Reinvest the profits during later rolldowns.
-6. Accumulate at least $1,000,000 before the vulnerability is fixed.
-7. Retrieve the flag.
+6. Reach a balance of $1,000,000.
+7. Submit the displayed flag.
 
-Buying tickets during normal weeks will gradually reduce the available balance. The challenge is therefore about **when** to invest, not simply buying tickets every week.
+Buying tickets every week will quickly reduce the available balance.
 
 ---
 
-# Intended Solution
+## Intended Solution
 
-## Step 1: Open the Lottery
+Advance through the weeks while watching the jackpot.
 
-After starting the shared VM, open:
+When the jackpot is far below $2 million, do not buy tickets:
 
 ```text
-http://MACHINE_IP/rooms/a312e8b7/lottery/
+Jackpot far below $2 million → Skip
 ```
 
-The application displays information such as:
-
-* Current week.
-* Available balance.
-* Current jackpot.
-* Rolldown threshold.
-* Number of tickets to purchase.
-* Remaining time before the flaw is fixed.
-
-The important value is the jackpot’s relationship to the **$2 million rolldown threshold**.
-
----
-
-## Step 2: Observe the Jackpot
-
-Do not immediately spend the starting balance.
-
-Advance through the early weeks and monitor how the jackpot changes after each drawing.
-
-A normal drawing should be skipped when the jackpot is far below the threshold. Tickets purchased during those weeks have a negative expected value and will usually reduce the bankroll.
-
-The intended decision is:
-
-```text
-Jackpot far below $2 million  → Skip
-Jackpot approaching $2 million → Prepare to buy
-```
-
----
-
-## Step 3: Estimate the Next Jackpot
-
-Record the jackpot movement across several weeks.
-
-A simple prediction can be made using the recent increase:
+Estimate whether the next increase will cross the threshold:
 
 ```text
 Predicted jackpot =
-    Current jackpot
-  + Expected weekly increase
+Current jackpot + Expected increase
 ```
 
 For example:
 
 ```text
-Current jackpot:          $1,820,000
-Expected increase:          $230,000
-Predicted next jackpot:   $2,050,000
+Current jackpot:        $1,820,000
+Expected increase:        $230,000
+Predicted jackpot:      $2,050,000
 ```
 
-Because the predicted amount crosses $2 million, the next drawing is likely to trigger a rolldown if the jackpot is not won.
+Because the predicted jackpot exceeds $2 million, the next drawing should trigger a rolldown.
 
-That is the drawing in which tickets become valuable.
+Before playing that drawing:
 
-The prediction does not need to be perfectly precise. The safest opportunity occurs when the current jackpot is already close to, but still below, $2 million.
-
----
-
-## Step 4: Buy the Maximum Number of Tickets
-
-Once a rolldown is expected:
-
-1. Select the ticket purchase control.
-2. Choose **Buy Maximum Tickets**.
-3. Confirm the purchase.
-4. Advance to the next drawing.
-
-Buying the maximum number of tickets gives the simulation enough volume for the result to generally approach the positive expected return.
-
-A correctly timed maximum purchase should increase the balance significantly.
-
-Do not purchase the tickets after the rolldown has already occurred. The tickets must be purchased for the drawing that crosses the threshold.
-
----
-
-## Step 5: Repeat the Process
-
-After a successful rolldown:
-
-1. Keep the resulting profit.
-2. Resume skipping ordinary weeks.
-3. Wait for the jackpot to approach $2 million again.
-4. Buy the maximum number of tickets before the next rolldown.
-5. Repeat until the balance reaches $1 million.
-
-The growing balance allows increasingly large ticket purchases, producing larger profits from later rolldowns.
-
-This creates a compounding cycle:
-
-```text
-Larger balance
-    ↓
-More tickets during a rolldown
-    ↓
-Larger expected profit
-    ↓
-Even larger balance
-```
-
----
-
-# Creator’s Tactic
-
-The simplest and most reliable approach is to advance until the jackpot is **just below $2 million**.
-
-Once it is close to the threshold:
-
-1. Stop advancing.
-2. Select **Buy Maximum Tickets**.
-3. Play the next drawing.
+1. Select **Buy Maximum Tickets**.
+2. Confirm the purchase.
+3. Play the next week.
 4. Collect the rolldown return.
-5. Repeat during later rolldowns.
 
-In most runs, buying the maximum number of tickets when the jackpot is immediately below the threshold will produce enough profit to progress toward the objective.
-
-The game includes simulated variance, so the result of one purchase may differ between runs. However, a maximum purchase during a correctly identified rolldown will generally be profitable.
-
-The creator’s strategy can be summarised as:
-
-```text
-Far below $2 million     → Skip
-Just below $2 million    → Buy maximum
-Rolldown completed       → Keep profit and wait
-```
+Continue skipping ordinary weeks and repeating the maximum purchase before later rolldowns.
 
 ---
 
-# Enabling the Predicted Jackpot
+## Creator’s Tactic
 
-Players who are uncertain about calculating the next jackpot can unlock the challenge hint.
+The easiest strategy is to wait until the current jackpot is **just below $2 million**.
 
-The hint reveals a hidden URL that enables the game’s **predicted jackpot amount**:
+Use the following rule:
+
+```text
+Far below $2 million  → Skip
+Just below $2 million → Buy maximum
+After the rolldown    → Wait for the next one
+```
+
+Buying the maximum number of tickets during a correctly identified rolldown will generally produce enough profit to continue progressing.
+
+There is simulated variance, so the exact return may differ between attempts. Larger purchases reduce the effect of that variance.
+
+---
+
+## Enabling the Jackpot Prediction
+
+Players who are unsure when the next rolldown will occur can unlock the challenge hint.
+
+The hint provides this URL:
 
 ```text
 http://MACHINE_IP/rooms/a312e8b7/lottery/hint/4eecaa732a0adf67a9e14c6d334b5f0a4473aabb3db838fc0f927c434a63afcb
 ```
 
-Open this URL in the same browser session used for the challenge.
-
-After enabling it, return to the main lottery page:
+Open it in the same browser session, then return to:
 
 ```text
 http://MACHINE_IP/rooms/a312e8b7/lottery/
 ```
 
-The interface will now automatically display an estimated jackpot for the next drawing.
+The game will now display a predicted jackpot amount.
 
-The decision then becomes straightforward:
+Use it to make the decision:
 
 ```text
-Predicted amount below $2 million  → Skip
-Predicted amount above $2 million  → Buy maximum
+Predicted jackpot below $2 million → Skip
+Predicted jackpot above $2 million → Buy maximum
 ```
 
-For an easy completion:
+For the easiest completion:
 
 1. Enable the prediction.
-2. Advance until the current jackpot is just below $2 million.
-3. Confirm that the predicted amount crosses $2 million.
+2. Advance until the jackpot is just below $2 million.
+3. Confirm that the prediction crosses $2 million.
 4. Buy the maximum number of tickets.
-5. Repeat until the balance exceeds $1 million.
+5. Repeat until the balance reaches $1 million.
 
 ---
 
-# Retrieving the Flag
+## Retrieving the Flag
 
-Once the account balance reaches the required retirement target of **$1,000,000**, the application displays the completion flag.
+Once the balance reaches the retirement target, the application displays the flag.
 
-Copy the displayed flag and submit it to the corresponding TryHackMe question.
+Copy the flag and submit it to the TryHackMe question.
 
-The exact financial result may vary between runs because the game simulates lottery variance. If the balance does not reach the target after the first rolldown, continue waiting for and investing in later rolldowns.
+If the first rolldown does not produce enough money, continue waiting for later rolldowns and repeat the same strategy.
 
 ---
 
-# Troubleshooting
+## Troubleshooting
 
-## The Lottery Page Does Not Load
+### The challenge does not load
 
-The wrong challenge may have been activated on the shared VM.
-
-Restart the VM, then make sure the first challenge URL opened is:
+Restart the VM and make sure this is the first challenge URL opened:
 
 ```text
 http://MACHINE_IP/rooms/a312e8b7/lottery/
 ```
 
----
+### The balance keeps decreasing
 
-## The Balance Keeps Decreasing
+Tickets are being purchased during normal weeks. Only buy when the next drawing is expected to trigger a rolldown.
 
-Tickets are probably being purchased during normal weeks.
+### The jackpot crossed $2 million without a purchase
 
-Skip drawings while the jackpot is far below $2 million. Only invest when the next drawing is expected to trigger a rolldown.
+The opportunity was missed. Wait for the jackpot to build again or restart the game.
 
----
+Tickets must be purchased before the drawing that triggers the rolldown.
 
-## The Jackpot Crossed $2 Million Without a Purchase
+### The purchase did not make enough profit
 
-The opportunity was missed.
+Use **Buy Maximum Tickets** rather than purchasing a small amount.
 
-Continue advancing until the jackpot builds toward the threshold again, or restart the game if too many weeks have been used.
+### The flaw was fixed before reaching $1 million
 
-Tickets must be purchased **before** the drawing that triggers the rolldown.
-
----
-
-## The Purchase Was Profitable but Too Small
-
-Buying a small number of tickets leaves the result more exposed to variance and produces limited profit.
-
-During a predicted rolldown, use:
-
-```text
-Buy Maximum Tickets
-```
-
-The challenge is designed around scaling the purchase during profitable weeks.
+Restart and skip every ordinary week. Only buy maximum tickets before predicted rolldowns.
 
 ---
 
-## The Rolldown Purchase Lost Money
+## Conclusion
 
-The predicted drawing may have been incorrect, or the purchase may have been too small.
+Calculated Luck demonstrates how a system can use secure randomness and still contain an exploitable business-logic flaw.
 
-Use the hidden prediction URL and wait until:
-
-```text
-Current jackpot < $2 million
-Predicted jackpot ≥ $2 million
-```
-
-Then buy the maximum number of tickets.
-
-A small amount of simulated variance is still possible, but correctly timed large purchases are generally profitable.
-
----
-
-## The Flaw Was Fixed Before Reaching $1 Million
-
-Too many ordinary weeks may have been played, or money may have been spent during negative-value drawings.
-
-Restart and use the more aggressive strategy:
-
-1. Skip all ordinary weeks.
-2. Enable the predicted jackpot.
-3. Buy maximum tickets only before predicted rolldowns.
-4. Reinvest during every later rolldown.
-
----
-
-# Why This Is a Business-Logic Vulnerability
-
-Nothing in the challenge requires:
-
-* Predicting the winning numbers.
-* Breaking the random-number generator.
-* Modifying requests.
-* Accessing another player’s account.
-* Injecting code into the application.
-* Bypassing authentication.
-
-The lottery performs exactly as its rules specify.
-
-The vulnerability exists because the interaction between several legitimate rules creates an unintended financial outcome:
-
-```text
-Jackpot cap
-    +
-Unclaimed jackpot
-    +
-Redistribution to lower prizes
-    +
-Unchanged ticket price
-    =
-Positive expected value
-```
-
-The individual components work correctly, but their combination allows informed players to extract predictable value from the system.
-
-This is a common characteristic of business-logic vulnerabilities: the attacker does not break the software’s technical controls. They understand the system’s rules better than its designers anticipated.
-
----
-
-# Conclusion
-
-Calculated Luck demonstrates that secure randomness does not automatically create a secure system.
-
-The winning numbers remain random throughout the challenge. What becomes predictable is the **value of participating**.
-
-By monitoring the jackpot, estimating when the rolldown will occur, and purchasing enough tickets during the favourable drawing, the player can turn a game of chance into a positive-expected-value investment.
-
-The intended solution is:
+The winning numbers cannot be predicted. The profitable conditions can.
 
 ```text
 Wait for the jackpot to approach $2 million
                     ↓
-Predict whether the next drawing will cross the threshold
+Predict the next rolldown
                     ↓
-Buy the maximum number of tickets
+Buy maximum tickets
                     ↓
-Profit from the rolldown
+Reinvest the profit
                     ↓
-Repeat until the balance reaches $1 million
+Reach $1 million
                     ↓
 Capture the flag
 ```
 
-The weakness was never the random draw.
+The vulnerability is not in the lottery draw.
 
-It was the rules surrounding it.
+It is in the rules surrounding it.
