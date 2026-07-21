@@ -10,8 +10,6 @@ Remember: in the nine circles of Hell you will find some demons that will try to
 
 Room: https://tryhackme.com/room/inferno
 
-Not the hacking group
-
 ⚠️ STOP
 
 Stuck and need a nudge in the right direction?
