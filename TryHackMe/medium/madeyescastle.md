@@ -4,6 +4,8 @@ A boot2root box that is modified from a box used in CuCTF by the team at Runcode
 
 Have fun storming Madeye's Castle! In this room you will need to fully enumerate the system, gain a foothold, and then pivot around to a few different users. 
 
+Room: https://tryhackme.com/room/madeyescastle
+
 ⚠️ STOP
 
 Stuck and need a nudge in the right direction?
